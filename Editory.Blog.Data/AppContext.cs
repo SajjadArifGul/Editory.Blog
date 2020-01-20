@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Editory.Blog.Data
 {
-    public class BlogContext : IdentityDbContext<AppUser>
+    public class AppContext : IdentityDbContext<AppUser>
     {
-        public BlogContext() : base("name=ConnectionString_OK")
+        public AppContext() : base("name=ConnectionString_OK")
         {
-            Database.SetInitializer<BlogContext>(new BlogDataInitializer());
+            Database.SetInitializer<AppContext>(new AppDataInitializer());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -34,9 +34,9 @@ namespace Editory.Blog.Data
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<PostPicture> PostPictures { get; set; }
 
-        public static BlogContext Create()
+        public static AppContext Create()
         {
-            return new BlogContext();
+            return new AppContext();
         }
     }
 }

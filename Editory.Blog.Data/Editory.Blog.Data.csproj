@@ -57,8 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlogContext.cs" />
-    <Compile Include="BlogDataInitializer.cs" />
+    <Compile Include="AppContext.cs" />
+    <Compile Include="AppDataInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

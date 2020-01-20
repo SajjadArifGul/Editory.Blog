@@ -21,7 +21,7 @@ namespace Editory.Blog.Services
 
         public static AppUserManager Create(IdentityFactoryOptions<AppUserManager> options, IOwinContext context)
         {
-            var manager = new AppUserManager(new UserStore<AppUser>(context.Get<BlogContext>()));
+            var manager = new AppUserManager(new UserStore<AppUser>(context.Get<Data.AppContext>()));
 
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<AppUser>(manager)

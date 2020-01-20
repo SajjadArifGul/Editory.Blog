@@ -19,7 +19,7 @@ namespace Editory.Blog.Services
 
         public static AppRoleManager Create(IdentityFactoryOptions<AppRoleManager> options, IOwinContext context)
         {
-            return new AppRoleManager(new RoleStore<IdentityRole>(context.Get<BlogContext>()));
+            return new AppRoleManager(new RoleStore<IdentityRole>(context.Get<Data.AppContext>()));
         }
     }
 }
