@@ -165,9 +165,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\DashboardBaseController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\PostsController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\Dashboard\ViewModels\BaseViewModels.cs" />
+    <Compile Include="Areas\Dashboard\ViewModels\PostsViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -3978,6 +3981,9 @@
     <Content Include="Content\vendors\fontawesome-free\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\vendors\fontawesome-free\webfonts\fa-solid-900.woff" />
     <Content Include="Content\vendors\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="Areas\Dashboard\Views\Posts\Action.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Posts\Index.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Posts\_Listing.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

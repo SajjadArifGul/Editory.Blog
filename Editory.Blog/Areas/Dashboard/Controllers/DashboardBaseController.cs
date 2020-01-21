@@ -6,11 +6,7 @@ using System.Web.Mvc;
 
 namespace Editory.Blog.Areas.Dashboard.Controllers
 {
-    public class DashboardController : DashboardBaseController
+    public class DashboardBaseController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
     }
 }

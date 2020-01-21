@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Editory.Blog.Data
 {
-    public class AppDataInitializer : CreateDatabaseIfNotExists<AppDataContext>
+    public class AppDataInitializer : DropCreateDatabaseAlways<AppDataContext>
     {
         protected override void Seed(AppDataContext context)
         {

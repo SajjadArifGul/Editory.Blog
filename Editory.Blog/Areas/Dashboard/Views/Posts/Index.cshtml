@@ -1,0 +1,40 @@
+﻿@model Editory.Blog.Areas.Dashboard.ViewModels.PostsListingViewModels
+@{
+    var selectedPostStatus = Model.PostStatus.HasValue ? Model.PostStatus.Value : 0;
+}
+
+<div class="page-info-container">
+    <h1 class="h3 mb-2 text-gray-800">
+        @Model.PageTitle
+    </h1>
+    <p class="mb-4">
+        @Model.PageDescription
+    </p>
+    <hr />
+</div>
+
+<div class="page-data-holder card shadow mb-4">
+    <div class="card-header">
+        <form action="@Url.ListAction("Posts")">
+            <div class="input-group">
+                <input name="searchTerm" type="text" value="@Model.SearchTerm" class="form-control" placeholder="Search">
+                <select class="form-control custom-select" name="postStatus">
+                    <option value="0">Select By Status...</option>
+                    @foreach (var postStatus in Enum.GetValues(typeof(PostStatus)).Cast<PostStatus>())
+                    {
+                        var selected = (int)postStatus == selectedPostStatus ? "selected" : string.Empty;
+
+                        <option value="@((int)postStatus)" @selected>@postStatus.AsName()</option>
+                    }
+                </select>
+
+                <button type="submit" class="form-control btn btn-primary"><i class="fas fa-search"></i> Search</button>
+                <a href="@Url.ListAction("Posts")" role="button" class="form-control btn btn-primary"><i class="fas fa-redo-alt"></i> Reset</a>
+                <a href="@Url.CreateAction("Posts")" role="button" class="form-control btn btn-success"><i class="fas fa-feather-alt"></i> New Post</a>
+            </div>
+        </form>
+    </div>
+    <div class="card-body p-0" id="listingArea">
+        @{Html.RenderPartial("_Listing", Model);}
+    </div>
+</div>
