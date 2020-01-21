@@ -1,0 +1,36 @@
+﻿@model Editory.Blog.Areas.Dashboard.ViewModels.DashboardPageViewModel
+@{
+    var baseModel = Model;
+
+    if (baseModel == null)
+    {
+        baseModel = new Editory.Blog.Areas.Dashboard.ViewModels.DashboardPageViewModel();
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @Html.Partial("_MetaTags", baseModel)
+    @Html.Partial("_HeaderStylesScripts")
+    @RenderSection("HeaderStylesScripts", false)
+</head>
+<body id="page-top" >
+    <div id="wrapper">
+        @Html.Partial("_SideMenu")
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                @Html.Partial("_TopMenu")
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </div>
+            @Html.Partial("_Footer")
+        </div>
+    </div>
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    @Html.Partial("_FooterStylesScripts")
+</body>
+</html>

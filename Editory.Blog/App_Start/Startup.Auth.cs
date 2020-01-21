@@ -18,7 +18,7 @@ namespace Editory.Blog
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(Data.AppContext.Create);
+            app.CreatePerOwinContext(Data.AppDataContext.Create);
             app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
             app.CreatePerOwinContext<AppSignInManager>(AppSignInManager.Create);
             app.CreatePerOwinContext<AppRoleManager>(AppRoleManager.Create);

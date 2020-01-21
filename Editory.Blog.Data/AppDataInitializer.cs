@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Editory.Blog.Data
 {
-    public class AppDataInitializer : CreateDatabaseIfNotExists<AppContext>
+    public class AppDataInitializer : CreateDatabaseIfNotExists<AppDataContext>
     {
-        protected override void Seed(AppContext context)
+        protected override void Seed(AppDataContext context)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace Editory.Blog.Data
             }
         }
 
-        public void SeedRoles(AppContext context)
+        public void SeedRoles(AppDataContext context)
         {
             List<IdentityRole> rolesInDealDouble = new List<IdentityRole>();
 
@@ -50,7 +50,7 @@ namespace Editory.Blog.Data
             }
         }
 
-        public void SeedUsers(AppContext context)
+        public void SeedUsers(AppDataContext context)
         {
             var usersStore = new UserStore<AppUser>(context);
             var usersManager = new UserManager<AppUser>(usersStore);
@@ -81,7 +81,7 @@ namespace Editory.Blog.Data
             }
         }
         
-        public void SeedCategories(AppContext context)
+        public void SeedCategories(AppDataContext context)
         {
             Category Uncategorized = new Category()
             {
@@ -96,7 +96,7 @@ namespace Editory.Blog.Data
             context.SaveChanges();
         }
 
-        public void SeedConfigurations(AppContext context)
+        public void SeedConfigurations(AppDataContext context)
         {
             Configuration ApplicationName = new Configuration()
             {

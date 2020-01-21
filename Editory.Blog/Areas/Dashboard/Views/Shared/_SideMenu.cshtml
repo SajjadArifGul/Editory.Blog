@@ -1,0 +1,71 @@
+﻿<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Dashboard()">
+        <div class="sidebar-brand-icon mr-2">
+            <i class="fas fa-server"></i>
+        </div>
+        <div class="sidebar-brand-text">
+            @ConfigurationsHelper.ApplicationName
+        </div>
+    </a>
+    <hr class="sidebar-divider my-0" />
+    <li class="nav-item @Html.MenuItemClass("Dashboard")">
+        <a class="nav-link" href="@Url.Dashboard()">
+            <i class="fas fa-user-shield"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <li class="nav-item @Html.MenuItemClass("Pages")">
+        <a class="nav-link @(string.IsNullOrEmpty(Html.MenuItemClass("Pages").ToString()) ? "collapsed" : string.Empty)" href="#" data-toggle="collapse" data-target="#pagesActions">
+            <i class="fas fa-location-arrow"></i>
+            <span>Pages</span>
+        </a>
+        <div id="pagesActions" class="collapse @(string.IsNullOrEmpty(Html.MenuItemClass("Pages").ToString()) ? string.Empty : "show")" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item @Html.MenuItemClass("Pages", "Index")" href="@Url.ListAction("Pages")">All Pages</a>
+                <a class="collapse-item @Html.MenuItemClass("Pages", "Action")" href="@Url.CreateAction("Pages")">Create Page</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item @Html.MenuItemClass("Posts")">
+        <a class="nav-link @(string.IsNullOrEmpty(Html.MenuItemClass("Posts").ToString()) ? "collapsed" : string.Empty)" href="#" data-toggle="collapse" data-target="#postsActions">
+            <i class="fas fa-feather-alt"></i>
+            <span>Posts</span>
+        </a>
+        <div id="postsActions" class="collapse @(string.IsNullOrEmpty(Html.MenuItemClass("Posts").ToString()) ? string.Empty : "show")" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item @Html.MenuItemClass("Posts", "Index")" href="@Url.ListAction("Posts")">All Posts</a>
+                <a class="collapse-item @Html.MenuItemClass("Posts", "Action")" href="@Url.CreateAction("Posts")">Create Post</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item @Html.MenuItemClass("Comments")">
+        <a class="nav-link" href="@Url.ListAction("Comments")">
+            <i class="fas fa-comments"></i>
+            <span>Comments</span>
+        </a>
+    </li>
+    <li class="nav-item @Html.MenuItemClass("Users")">
+        <a class="nav-link" href="@Url.ListAction("Users")">
+            <i class="fas fa-users"></i>
+            <span>Users</span>
+        </a>
+    </li>
+    <li class="nav-item @Html.MenuItemClass("Roles")">
+        <a class="nav-link" href="@Url.ListAction("Roles")">
+            <i class="fas fa-users-cog"></i>
+            <span>Roles</span>
+        </a>
+    </li>
+    <li class="nav-item @Html.MenuItemClass("Configurations")">
+        <a class="nav-link" href="@Url.ListAction("Configurations")">
+            <i class="fas fa-cogs"></i>
+            <span>Configurations</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider d-none d-md-block">
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>
