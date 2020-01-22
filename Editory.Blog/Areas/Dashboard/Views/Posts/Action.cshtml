@@ -64,15 +64,70 @@
                 <textarea class="form-control" id="Description" name="Description" placeholder="Add Description." rows="10">@Model.Description</textarea>
             </div>
 
-
             <div class="form-group">
                 <label>
                     Post Pictures
                 </label>
                 <input id="selectPictures" class="form-control" type="file" multiple />
                 <div id="picturesArea" class="row m-0 pb-2">
+                    @if (Model.PostPicturesList != null && Model.PostPicturesList.Count > 0)
+                    {
+                        foreach (var picture in Model.PostPicturesList)
+                        {
+                            <div class="card mt-2" style="width:300px;">
+                                <div class="card-body text-center">
+                                    <img class='image card-img-top img-thumbnail' src='@Html.PictureSource(picture.Picture.URL)' data-id="@picture.PictureID" style="width: 250px; height: 250px;" />
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <input type="radio" name="ThumbnailPictureID" class="mr-1" value="@picture.PictureID" @(picture.PictureID == Model.ThumbnailPictureID ? "checked" : string.Empty)>
+                                        <label>Set as Thumbnail Image</label>
+                                    </li>
+                                </ul>
+                                <div class="card-footer">
+                                    <button type="button" class="btn btn-danger" onclick="removeImage(this)"><i class="fas fa-times mr-1"></i> Remove</button>
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
                 <input type="hidden" name="PostPictures" id="pictureIDs" />
+            </div>
+
+            <div class="form-group">
+                <label>
+                    URL
+                </label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            @Url.Dashboard().ToSiteURL()/
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" id="postURL" name="URL" value="@Model.URL">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-check" title="To mark this Product as featured product.">
+                    <input type="checkbox" name="isFeatured" value="true" class="form-check-input" id="isFeatured" @(Model.IsFeatured ? "checked" : string.Empty)>
+                    <input type="hidden" name="isFeatured" value="false">
+
+                    <label class="form-check-label" for="isFeatured">
+                        Featured
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-check" title="To mark this Product as featured product.">
+                    <input type="checkbox" name="isFeatured" value="true" class="form-check-input" id="isFeatured" @(Model.IsFeatured ? "checked" : string.Empty)>
+                    <input type="hidden" name="isFeatured" value="false">
+
+                    <label class="form-check-label" for="isFeatured">
+                        Publish
+                    </label>
+                </div>
             </div>
 
             <hr />
