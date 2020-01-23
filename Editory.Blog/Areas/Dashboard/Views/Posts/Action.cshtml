@@ -11,21 +11,24 @@
     </div>
 </div>
 
+<link rel="stylesheet" href="https://www.jqueryscript.net/demo/Clean-jQuery-Date-Time-Picker-Plugin-datetimepicker/jquery.datetimepicker.css" />
+<script src="https://www.jqueryscript.net/demo/Clean-jQuery-Date-Time-Picker-Plugin-datetimepicker/jquery.datetimepicker.js"></script>
+
 <div class="row">
     <div class="col-lg-12">
         @*<div class="form-group">
-            <label>
-                URL
-            </label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                        @Url.BlogPost(123).ToSiteURL()/
-                    </span>
+                <label>
+                    URL
+                </label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            @Url.BlogPost(123).ToSiteURL()/
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" id="postURL" name="URL" value="@Model.URL">
                 </div>
-                <input type="text" class="form-control" id="postURL" name="URL" value="@Model.URL">
-            </div>
-        </div>*@
+            </div>*@
 
         <form id="actionForm" method="post">
             <input type="hidden" name="ID" value="@Model.ID" />
@@ -166,7 +169,7 @@
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
-                <input type="radio" name="ThumbnailPicture" class="mr-1" value=''>
+                <input type="radio" name="ThumbnailPictureID" class="mr-1" value=''>
                 <label>Set as Thumbnail Image</label>
             </li>
         </ul>
@@ -245,23 +248,14 @@
 
 		for (var i = 0; i < pictures.length; i++) {
 			picsData.append("Picture", pictures[i]);
-		}
+        }
 
-		$.ajax({
-			url: "@Url.Action("UploadPictures", "Shared", new { area = "" })",
-			type: "post",
-			data: picsData,
-			dateType: "json",
-			processData: false,
-			contentType: false
-		})
-		.done(function (responses) {
-			for (var i = 0; i < responses.length; i++) {
-				var picResponse = responses[i];
-
-				AttachNewImage(picResponse.pictureURL, picResponse.ID);
-			}
-		});
+        UploadPictures(picsData).then(function (responses) {
+            for (var i = 0; i < responses.length; i++) {
+                var picResponse = responses[i];
+                AttachNewImage(picResponse.pictureURL, picResponse.ID);
+		    }
+        });
     });
 
     function AttachNewImage(imageURL, imageID) {

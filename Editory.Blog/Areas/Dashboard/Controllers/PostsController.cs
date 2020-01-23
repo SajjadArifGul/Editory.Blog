@@ -82,79 +82,79 @@ namespace Editory.Blog.Areas.Dashboard.Controllers
 
             return View(model);
         }
+        
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Action(PostActionViewModel model)
+        {
+            if (model.ID > 0)
+            {
+                var post = PostsService.Instance.GetPostByID(model.ID);
 
+                if (post == null)
+                    return HttpNotFound();
 
-        //[HttpPost, ValidateInput(false)]
-        //public ActionResult Action(PostActionViewModel model)
-        //{
-        //    if (model.ID > 0)
-        //    {
-        //        var post = PostsService.Instance.GetPostByID(model.ID);
+                post.ID = model.ID;
+                post.CategoryID = model.CategoryID;
+                post.URL = model.URL;
+                post.Title = model.Title;
+                post.Summary = model.Summary;
+                post.Description = model.Description;
+                post.isFeatured = model.isFeatured;
+                post.PostStatus = model.PostStatus;
+                post.DateTime = model.DateTime;
+                post.ModifiedOn = DateTime.Now;
 
-        //        if (post == null) return HttpNotFound();
+                if (!string.IsNullOrEmpty(model.PostPictures))
+                {
+                    var pictureIDs = model.PostPictures
+                                                .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                                                .Select(ID => int.Parse(ID)).ToList();
 
-        //        post.ID = model.ID;
-        //        post.CategoryID = model.CategoryID;
-        //        post.URL = model.URL;
-        //        post.Title = model.Title;
-        //        post.Summary = model.Summary;
-        //        post.Description = model.Description;
-        //        post.isFeatured = model.isFeatured;
-        //        post.PostStatus = model.PostStatus;
-        //        post.DateTime = model.DateTime;
-        //        post.ModifiedOn = DateTime.Now;
+                    if (pictureIDs.Count > 0)
+                    {
+                        post.PostPictures.Clear();
+                        post.PostPictures.AddRange(pictureIDs.Select(x => new PostPicture() { PostID = post.ID, PictureID = x }).ToList());
 
-        //        if (!string.IsNullOrEmpty(model.PostPictures))
-        //        {
-        //            var pictureIDs = model.PostPictures
-        //                                        .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-        //                                        .Select(ID => int.Parse(ID)).ToList();
+                        post.ThumbnailPictureID = model.ThumbnailPicture != 0 ? model.ThumbnailPicture : pictureIDs.First();
+                    }
+                }
 
-        //            if (pictureIDs.Count > 0)
-        //            {
-        //                post.PostPictures.Clear();
-        //                post.PostPictures.AddRange(pictureIDs.Select(x => new PostPicture() { PostID = post.ID, PictureID = x }).ToList());
+                PostsService.Instance.UpdatePost(post);
+            }
+            else
+            {
+                var post = new Post();
 
-        //                post.ThumbnailPictureID = model.ThumbnailPicture != 0 ? model.ThumbnailPicture : pictureIDs.First();
-        //            }
-        //        }
+                post.CategoryID = model.CategoryID;
+                post.URL = model.URL;
+                post.Title = model.Title;
+                post.Summary = model.Summary;
+                post.Description = model.Description;
+                post.isFeatured = model.isFeatured;
+                post.PostStatus = model.PostStatus;
+                post.DateTime = model.DateTime;
+                post.ModifiedOn = DateTime.Now;
 
-        //        PostsService.Instance.UpdatePost(post);
-        //    }
-        //    else
-        //    {
-        //        var post = new Post();
+                if (!string.IsNullOrEmpty(model.PostPictures))
+                {
+                    var pictureIDs = model.PostPictures
+                                                .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                                                .Select(ID => int.Parse(ID)).ToList();
 
-        //        post.CategoryID = model.CategoryID;
-        //        post.URL = model.URL;
-        //        post.Title = model.Title;
-        //        post.Summary = model.Summary;
-        //        post.Description = model.Description;
-        //        post.isFeatured = model.isFeatured;
-        //        post.PostStatus = model.PostStatus;
-        //        post.DateTime = model.DateTime;
-        //        post.ModifiedOn = DateTime.Now;
+                    if (pictureIDs.Count > 0)
+                    {
+                        post.PostPictures = new List<PostPicture>();
+                        post.PostPictures.AddRange(pictureIDs.Select(x => new PostPicture() { PostID = post.ID, PictureID = x }).ToList());
 
-        //        if (!string.IsNullOrEmpty(model.PostPictures))
-        //        {
-        //            var pictureIDs = model.PostPictures
-        //                                        .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-        //                                        .Select(ID => int.Parse(ID)).ToList();
+                        post.ThumbnailPictureID = model.ThumbnailPicture != 0 ? model.ThumbnailPicture : pictureIDs.First();
+                    }
+                }
 
-        //            if (pictureIDs.Count > 0)
-        //            {
-        //                post.PostPictures = new List<PostPicture>();
-        //                post.PostPictures.AddRange(pictureIDs.Select(x => new PostPicture() { PostID = post.ID, PictureID = x }).ToList());
+                PostsService.Instance.SavePost(post);
+            }
 
-        //                post.ThumbnailPictureID = model.ThumbnailPicture != 0 ? model.ThumbnailPicture : pictureIDs.First();
-        //            }
-        //        }
-
-        //        PostsService.Instance.SavePost(post);
-        //    }
-
-        //    return RedirectToAction("Index");
-        //}
+            return RedirectToAction("Index");
+        }
 
     }
 }

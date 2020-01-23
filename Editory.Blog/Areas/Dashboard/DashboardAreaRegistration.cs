@@ -128,9 +128,16 @@ namespace Editory.Blog.Areas.Dashboard
             );
 
             context.MapRoute(
+                name: "UploadPictures",
+                url: "dashboard/pictures/upload",
+                defaults: new { controller = "Shared", action = "UploadPictures" },
+                namespaces: new[] { "Editory.Blog.Areas.Dashboard.Controllers" }
+            );
+
+            context.MapRoute(
                 name: "DashboardDefault",
                 url: "dashboard/{controller}/{action}/{id}",
-                defaults: new { controller = "Dashboard", action = "Index", lang = UrlParameter.Optional, id = UrlParameter.Optional },
+                defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "Editory.Blog.Areas.Dashboard.Controllers" }
             );
         }

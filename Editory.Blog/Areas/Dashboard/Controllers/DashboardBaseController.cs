@@ -8,5 +8,6 @@ namespace Editory.Blog.Areas.Dashboard.Controllers
 {
     public class DashboardBaseController : Controller
     {
+
     }
 }

@@ -15,7 +15,7 @@
     @Html.Partial("_HeaderStylesScripts")
     @RenderSection("HeaderStylesScripts", false)
 </head>
-<body id="page-top" >
+<body id="page-top">
     <div id="wrapper">
         @Html.Partial("_SideMenu")
         <div id="content-wrapper" class="d-flex flex-column">
@@ -31,6 +31,7 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+    @Html.Partial("_HiddenLinks")
     @Html.Partial("_FooterStylesScripts")
 </body>
 </html>

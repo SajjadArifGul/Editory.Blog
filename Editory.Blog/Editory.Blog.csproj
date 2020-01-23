@@ -168,6 +168,7 @@
     <Compile Include="Areas\Dashboard\Controllers\DashboardBaseController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\SharedController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\Dashboard\ViewModels\BaseViewModels.cs" />
     <Compile Include="Areas\Dashboard\ViewModels\PostsViewModels.cs" />
@@ -3712,6 +3713,7 @@
     <Content Include="Content\vendors\jquery.validate\jquery.validate.js" />
     <Content Include="Content\vendors\jquery.validate\jquery.validate.min.js" />
     <Content Include="Content\vendors\jquery\jquery-3.4.1.min.js" />
+    <Content Include="Content\vendors\moment.js\moment.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -3984,6 +3986,7 @@
     <Content Include="Areas\Dashboard\Views\Posts\Action.cshtml" />
     <Content Include="Areas\Dashboard\Views\Posts\Index.cshtml" />
     <Content Include="Areas\Dashboard\Views\Posts\_Listing.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Shared\_HiddenLinks.cshtml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
